@@ -10,7 +10,7 @@ from tensorflow.keras.optimizers import Adam
 # load images to build and train the model
 #                       ....                                     /    img1.jpg
 #             test      Hand            patient0000   positive  --   img2.png
-#           /                /                         \    .....
+#           /                /                         \    ......
 #   Dataset   -         Elbow  ------   patient0001
 #           \ train               \         /                           img1.png
 #                       Shoulder        patient0002     negative --      img2.jpg
