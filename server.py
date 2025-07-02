@@ -15,12 +15,12 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(PROCESSED_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# ✅ Serve processed heatmap images
+# Serve processed heatmap images
 @app.route('/uploads/processed/<filename>')
 def serve_heatmap(filename):
     return send_from_directory(PROCESSED_FOLDER, filename)
 
-# 🔹 Database Initialization
+#Database Initialization
 def init_db():
     conn = sqlite3.connect("users.db")
     cursor = conn.cursor()
@@ -38,7 +38,6 @@ def init_db():
             username TEXT,
             bone_type TEXT,
             fracture_result TEXT,
-            heatmap_image TEXT,
             FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
         )
     ''')
@@ -133,15 +132,15 @@ def upload_file():
 
     username = session['user']
 
-    # 🔹 Bone Type Classification
+    #Bone Type Classification
     bone_type = predict(filepath, "Parts")
 
-    # 🔹 Fracture Prediction
+    #Fracture Prediction
     fracture_result = predict(filepath, bone_type) if bone_type in ["Elbow", "Hand", "Shoulder"] else "Unknown"
 
     heatmap_filename = None
 
-    # 🔹 Generate Heatmap if Fractured
+    # Generate Heatmap if Fractured
     if fracture_result == 'fractured':
         heatmap_filename = f"heatmap_{filename}"
         heatmap_path = os.path.join(PROCESSED_FOLDER, heatmap_filename)
@@ -176,7 +175,7 @@ def upload_file():
         overlay = cv2.addWeighted(image_color, 0.7, heatmap, 0.3, 0)
         cv2.imwrite(heatmap_path, overlay)
 
-    # ✅ 🔹 Store Prediction in Database (Re-added)
+    #  Store Prediction in Database (Re-added)
     try:
         conn = sqlite3.connect("users.db")
         cursor = conn.cursor()
