@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const imagePreviewContainer = document.getElementById("imagePreviewContainer");
     const imagePreview = document.getElementById("imagePreview");
 
-    // 🚀 LOGIN FUNCTIONALITY (No pop-ups)
+    //LOGIN FUNCTIONALITY
     if (loginForm) {
         loginForm.addEventListener("submit", async function (event) {
             event.preventDefault();
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // ✅ Password visibility toggle for login form (Fixed)
+        //Password visibility toggle for login form
         const togglePasswordLogin = document.getElementById("toggle-password-login");
         const loginPasswordInput = document.getElementById("login-password");
         togglePasswordLogin.addEventListener("click", function () {
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 🚀 SIGNUP FUNCTIONALITY (Show Modal Instead of Pop-Up)
+    //SIGNUP FUNCTIONALITY
     if (signupForm) {
         signupForm.addEventListener("submit", async function (event) {
             event.preventDefault();
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // ✅ Password visibility toggle for signup form (Fixed)
+        //Password visibility toggle for signup form
         const togglePasswordSignup = document.getElementById("toggle-password-signup");
         const signupPasswordInput = document.getElementById("signup-password");
         togglePasswordSignup.addEventListener("click", function () {
@@ -88,14 +88,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 🚀 CLOSE MODAL & REDIRECT TO LOGIN
     if (modalOkButton) {
         modalOkButton.addEventListener("click", function () {
             window.location.href = "/login"; // Redirect to login page
         });
     }
 
-    // 🚀 FILE UPLOAD & PREDICTION FUNCTIONALITY
+    //FILE UPLOAD & PREDICTION FUNCTIONALITY
     if (uploadForm) {
         // Image Preview Feature
         fileInput.addEventListener("change", function () {
@@ -135,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         predictionResult.innerHTML = `Bone Type: <b>${data.bone_type}</b><br>Result: <b>${data.result}</b>`;
                         predictionResult.style.display = 'block';
 
-                        // ✅ Replace uploaded image with heatmap if fractured (Fixed)
+                        // Replace uploaded image with heatmap if fractured (Fixed)
                         if (data.result === "Fractured" && data.heatmap_image) {
                             imagePreview.src = data.heatmap_image + "?t=" + new Date().getTime(); // Force refresh
                         }
@@ -153,7 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 🚀 LOGOUT FUNCTIONALITY (No pop-ups)
     if (logoutButton) {
         logoutButton.addEventListener("click", function () {
             fetch("/logout", { method: "POST" })
