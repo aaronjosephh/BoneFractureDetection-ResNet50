@@ -8,7 +8,7 @@ model_hand_frac = tf.keras.models.load_model("weights/ResNet50_Hand_frac.h5")
 model_shoulder_frac = tf.keras.models.load_model("weights/ResNet50_Shoulder_frac.h5")
 model_parts = tf.keras.models.load_model("weights/ResNet50_BodyParts.h5")
 
-# categories for each result by index
+#categories for each result by index
 
 #   0-Elbow     1-Hand      2-Shoulder
 categories_parts = ["Elbow", "Hand", "Shoulder"]
