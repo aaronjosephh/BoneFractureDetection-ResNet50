@@ -6,7 +6,7 @@ from predictions import predict
 # load images to predict from paths
 #               ....                       /    elbow1.jpg
 #               Hand          fractured  --   elbow2.png
-#           /                /             \    .....
+#           /                /             \    ......
 #   test   -   Elbow  ------
 #           \                \         /        elbow1.png
 #               Shoulder        normal --       elbow2.jpg
